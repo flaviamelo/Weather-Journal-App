@@ -1,37 +1,48 @@
 /* Global Variables */
-const BASE_URL = 'http://api.openweathermap.org/data/2.5/weather';
-const COUNTRY = 'us';
-const API_KEY = '62e179490a29bc17c56de5ec36a7e37d';
-const MY_SERVER_URL = 'http://localhost:3000';
+const base_url = 'http://api.openweathermap.org/data/2.5/weather';
+const country = 'us';
+const apy_key = '62e179490a29bc17c56de5ec36a7e37d';
+const my_server_url = 'http://localhost:8000';
 
-// Event listener to add function to existing HTML DOM element
+// Event listener - click
+
 document.getElementById('generate').addEventListener('click', performAction);
 
 /* Function called by event listener */
 function performAction(e) {
 const zip = document.getElementById('zip').value;
 const feelings = document.getElementById('feelings').value;
+    if (zip === "") {
+    alert("Please enter zip code.");
+    return true;
+    };
+    if (feelings === "") {
+    alert("Please tell us how you are feeling today.");
+    return true;
+    };
+
 getWeather(zip, feelings);
 }
+
 /* Function to GET Web API Data*/
 /* Function to POST data */
 /* Function to GET Project Data */
 const getWeather = async (zip, feelings) => {
 const res =
-fetch(`${BASE_URL}?APPID=${API_KEY}&zip=${zip},${COUNTRY}`) // GET
+fetch(`${base_url}?APPID=${apy_key}&zip=${zip},${country}`) 
 .then(response => response.json())
 .then(data => {
 // Add data
 const tempKelvin = data.main.temp;
 const d = new Date();
 const formattedDate = d.getMonth()+ 1 + '/' + d.getDate() + '/' + d.getFullYear();
-return postData(`${MY_SERVER_URL}/addData`, { // POST
+return postData(`${my_server_url}/addData`, { 
 date: formattedDate,
 temperature: tempKelvin,
 feelings: feelings,
 });
 })
-.then(() => fetch(`${MY_SERVER_URL}/all`)) // GET returns the fetch promise
+.then(() => fetch(`${my_server_url}/all`)) 
 .then(response => response.json())
 .then(allData => {
 const data = allData[allData.length - 1];
@@ -54,4 +65,10 @@ headers: {
 },
 body: JSON.stringify(data),
 });
+}
+/* Function to add 'Most Recent Entry'*/
+document.getElementById('generate').addEventListener('click', showTitle);
+function showTitle(){
+    document.getElementById('title').innerHTML = `Most Recent Entry`;
+    document.getElementById('color').style.backgroundColor = "rgba(5, 10, 77, 0.454)";
 }
