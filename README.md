@@ -25,3 +25,4 @@ Local server should be running and producing feedback to the Command Line throug
 Created API credentials on OpenWeatherMap.com
 
 ### Final Output
+<img width="600" alt="output" src="https://user-images.githubusercontent.com/70104138/98014697-f7ebf480-1dc9-11eb-9ebb-da843a4868e9.png">
