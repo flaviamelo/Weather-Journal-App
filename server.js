@@ -1,9 +1,9 @@
 /* Dependencies */
 // Express to run server and routes
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 // Cors for cross origin allowance
-const cors = require('cors');
+const cors = require("cors");
 
 // Start up an instance of app
 const app = express();
@@ -15,30 +15,30 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static("website"));
 const port = 8000;
 
 // Spin up the server
-const server = app.listen(port, function listening(){
-    // console.log(server);
-    console.log(`running on localhost: ${port}`);
+const server = app.listen(port, function listening() {
+  // console.log(server);
+  console.log(`running on localhost: ${port}`);
 });
 
-const projectData = [];
+const projectData = {};
 
 // Callback function to complete GET '/all'
-app.get('/all', function sendData (req, res) {
+app.get("/all", function sendData(req, res) {
   res.send(projectData);
 });
 
-app.post('/addData', function getData(req, res){
+app.post("/addData", function getData(req, res) {
   newEntry = {
     temperature: req.body.temperature,
     date: req.body.date,
     feelings: req.body.feelings,
   };
 
-  projectData.push(newEntry);
+  projectData = newEntry;
   console.log(projectData);
   // set HTTP status of response to 204 ("Created")
   res.status(204).end();

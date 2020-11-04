@@ -71,9 +71,11 @@ button{
     box-shadow: 2px 4px 5px #444;
     margin-top: 20px;
 }
+
 h1{
     font-size:52px; 
 }
+
 #zip{
     color: #f0d43a;
 }
@@ -87,11 +89,13 @@ textarea{
     text-align: center;
     padding-top: 15px;
 }
+
 #title{
     font-size: 28px;
     font-weight: bold;
     padding-bottom: 10px;
 }
+
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
@@ -99,6 +103,7 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */
     color:  #f0d43a;
